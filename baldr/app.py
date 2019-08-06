@@ -10,16 +10,21 @@ from .core.events import DataLoadedMessage, NewProfile1DMessage
 import click
 import asyncio
 
+# from ipygoldenlayout import GoldenLayout
+
 
 class Application(JupyterApplication, HubListener):
-
-    def __init__(self, kernel=None):
+    """
+    Main class for the JDAViz application.
+    """
+    def __init__(self):
         dc = DataCollection()
-
         super().__init__(dc)
 
-        # self._kernel = Kernel(shell_port=8888)
+        # Create the main toolbar for the entire application
         self._toolbar = Toolbar(app=True, flat=True)
+
+        # Create the navigation drawer instance
         self._nav_drawer = DataList(self.hub, app=True, z_index=1000)
 
         self._tab_area = TabArea(self.hub)
@@ -31,8 +36,8 @@ class Application(JupyterApplication, HubListener):
         filename = '/Users/nearl/data/cubeviz/MaNGA/manga-7495-12704-LOGCUBE.fits'
         data = self.load_data(filename, auto_merge=True)
 
-        # self.add_viewer('profile1d', data)
-        # self.add_viewer('profile1d', data[2])
+        self.add_viewer('profile1d', data[2])
+        # self.add_viewer('profile1d', data[1])
 
     def register_to_hub(self, hub):
         pass
@@ -57,7 +62,7 @@ class Application(JupyterApplication, HubListener):
         return self.data_collection.hub
 
     def show(self):
-        div = v.Html(tag='div', children=[self._nav_drawer, self._toolbar, self._content, self._advanced_panel])
+        div = v.Html(tag='div', children=[self._app])
 
         return self._app
 

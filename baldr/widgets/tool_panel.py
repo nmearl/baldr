@@ -14,11 +14,16 @@ class ToolPanel(v.NavigationDrawer):
 
         self._mini_toggle_action.on_event('click.stop', self.toggle_mini_state)
 
-        self._title_list_tile = v.ListTile(avatar=True, children=[
-            v.ListTileAvatar(children=[v.Img(src="https://randomuser.me/api/portraits/men/85.jpg")]),
-            v.ListTileContent(children=['Advanced Panel']),
-            self._mini_toggle_action
-        ])
+        self._title_list_tile = v.ListTile(
+            avatar=True,
+            children=[
+                v.ListTileAvatar(
+                    children=[
+                        v.Img(src="https://randomuser.me/api/portraits/men/85.jpg")]),
+                v.ListTileContent(
+                    children=[
+                        'Advanced Panel']),
+                self._mini_toggle_action])
 
         self._title_list = v.List(class_='pa0', children=[
             self._title_list_tile
