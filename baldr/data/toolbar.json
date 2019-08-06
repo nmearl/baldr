@@ -1,0 +1,14 @@
+{
+    "class": "Toolbar",
+    "kwargs": {
+        "clipped": true
+    },
+    "children": [
+        {
+            "class": "Btn",
+            "kwargs": {
+                "icon": true
+            }
+        }
+    ]
+}
