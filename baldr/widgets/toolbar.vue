@@ -1,6 +1,9 @@
 <template>
     <v-toolbar fixed dark app clipped-left color="primary">
-        <v-btn outline>
+        <v-btn
+            outline
+            @click="load_data"
+            >
             Open
         </v-btn>
         <v-btn outline>
@@ -16,7 +19,7 @@
         <v-overflow-btn
             dark=false
             hide-details
-            label="Overflow Btn"
+            label="Create viewer..."
         ></v-overflow-btn>
 
         <v-divider vertical></v-divider>

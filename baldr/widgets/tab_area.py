@@ -2,6 +2,7 @@ import os
 
 from ipygoldenlayout import GoldenLayout
 from traitlets import Unicode
+from ipywidgets import IntSlider
 
 from ..core.events import NewProfile1DMessage
 from ..core.template_mixin import TemplateMixin
@@ -15,11 +16,14 @@ class TabArea(TemplateMixin):
 
     def __init__(self, *args, **kwargs):
         self._golden_layout = GoldenLayout()
-
-        super().__init__(*args, components={'b-golden-layout':
-            self._golden_layout, **kwargs})
+        super().__init__(
+            *args,
+            components={
+                'b-golden-layout': self._golden_layout},
+            **kwargs)
 
         self.hub.subscribe(self, NewProfile1DMessage, handler=self.vue_add_child)
 
-    def vue_add_child(self, event):
-        self._golden_layout.children = [t]
+    def vue_add_child(self, msg):
+        print(msg.figure)
+        self._golden_layout.children = [msg.figure.figure_widget]

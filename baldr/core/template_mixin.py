@@ -3,20 +3,17 @@ from glue.core import HubListener
 
 
 class TemplateMixin(v.VuetifyTemplate, HubListener):
-    def __init__(self, *args, components=None, **kwargs):
-        print("In Template mixin init")
-        print(args, kwargs)
-        super().__init__(*args, **kwargs)
-
-        # self._hub = hub
-
     def __new__(cls, *args, **kwargs):
-        print("IN NEW")
-        print(args, kwargs)
-        hub = kwargs.pop('hub')
-        print(kwargs)
+        """
+        Overload object creation so that we can inject a reference to the
+        ``Hub`` class before components can be initialized. This makes it so
+        hub references on widgets can be passed along to components in the
+        call to the initialization method.
+        """
+        hub = kwargs.pop('hub', None)
         obj = super().__new__(cls, *args, **kwargs)
         setattr(obj, '_hub', hub)
+
         return obj
 
     @property

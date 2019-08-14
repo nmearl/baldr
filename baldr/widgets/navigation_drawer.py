@@ -1,7 +1,7 @@
 import os
 
 from glue.core.message import (DataCollectionAddMessage, )
-from traitlets import (Unicode, List, Bool)
+from traitlets import (Unicode, List, Bool, Int)
 
 from ..core.template_mixin import TemplateMixin
 
@@ -15,15 +15,10 @@ class NavigationDrawer(TemplateMixin):
     currently in the glue collection.
     """
     drawer = Bool(True).tag(sync=True)
-    mini = Bool(True).tag(sync=True)
-    data_items = List([
-        {'title': 'Home', 'icon': 'dashboard'},
-        {'title': 'About', 'icon': 'question_answer'}
-    ]).tag(sync=True)
-    subset_items = List([
-        {'title': 'Home', 'icon': 'dashboard'},
-        {'title': 'About', 'icon': 'question_answer'}
-    ]).tag(sync=True)
+    mini = Bool(False).tag(sync=True)
+    data_items = List([]).tag(sync=True)
+    subset_items = List([]).tag(sync=True)
+    selected = Int(0).tag(sync=True)
 
     template = Unicode(TEMPLATE).tag(sync=True)
 
