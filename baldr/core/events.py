@@ -20,3 +20,14 @@ class LoadDataMessage(Message):
     @property
     def file_path(self):
         return self._file_path
+
+
+class DataSelectedMessage(Message):
+    def __init__(self, data, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self._data = data
+
+    @property
+    def data(self):
+        return self._data

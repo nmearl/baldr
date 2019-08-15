@@ -2,7 +2,7 @@ import os
 
 from ipygoldenlayout import GoldenLayout
 from traitlets import Unicode
-from ipywidgets import IntSlider
+from ipywidgets import IntSlider, VBox
 
 from ..core.events import NewProfile1DMessage
 from ..core.template_mixin import TemplateMixin
@@ -25,5 +25,7 @@ class TabArea(TemplateMixin):
         self.hub.subscribe(self, NewProfile1DMessage, handler=self.vue_add_child)
 
     def vue_add_child(self, msg):
-        print(msg.figure)
-        self._golden_layout.children = [msg.figure.figure_widget]
+
+        self._golden_layout.children = [
+            VBox([msg.figure.toolbar_selection_tools,
+                  msg.figure.figure_widget])]

@@ -17,9 +17,21 @@
         <v-divider vertical></v-divider>
 
         <v-overflow-btn
+            :items='viewers'
             dark=false
             hide-details
             label="Create viewer..."
+            v-model='selected_viewer'
+        ></v-overflow-btn>
+
+        <v-divider vertical></v-divider>
+        <v-spacer></v-spacer>
+        <v-divider vertical></v-divider>
+
+        <v-overflow-btn
+            dark=false
+            hide-details
+            label="Select subset..."
         ></v-overflow-btn>
 
         <v-divider vertical></v-divider>
